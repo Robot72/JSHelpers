@@ -18,12 +18,12 @@
     );
     
     M.saveBtnsFooter = [
-        '<button type="button" class="btn btn-default" data-dismiss="modal">Отменить</button>',
+        '<button type="button" class="btn btn-default btn-cancel" data-dismiss="modal">Отменить</button>',
         '<button type="button" class="btn btn-primary">Сохранить</button>'
     ].join('');
     
     M.okCancelBtnsFooter = [
-        '<button type="button" class="btn btn-default" data-dismiss="modal">Отменить</button>',
+        '<button type="button" class="btn btn-default btn-cancel" data-dismiss="modal">Отменить</button>',
         '<button type="button" class="btn btn-primary btn-ok">Ок</button>'
     ].join('');
     
@@ -34,5 +34,17 @@
         M.modal.modal();
         return false;
     };
+    
+    M.removeModal = function () {
+        $('.modal').remove();
+    };
+    
+    M.eventReadyHandler = function () {
+        $(document).on('click', '.btn-ok', M.removeModal);
+        $(document).on('click', '.btn-cansel', M.removeModal);        
+    };
+    
+    $(document).ready(M.eventReadyHandler);
+    
     window.Modal = M;
 }());
