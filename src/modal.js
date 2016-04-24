@@ -10,7 +10,7 @@
                         '</button>',
                         '<h4 class="modal-title"></h4>',
                     '</div>',
-                    '<div class="modal-body"><p></p></div>,
+                    '<div class="modal-body"><p></p></div>',
                     '<div class="modal-footer"></div>',
                 '</div><!-- /.modal-content -->',
             '</div><!-- /.modal-dialog -->',
