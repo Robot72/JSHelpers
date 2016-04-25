@@ -37,6 +37,7 @@
     
     M.removeModal = function () {
         $('.modal').remove();
+        return false;
     };
     
     M.eventReadyHandler = function () {
