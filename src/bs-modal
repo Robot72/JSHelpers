@@ -1,0 +1,59 @@
+/**
+ * Конструктор модальных окон на bootstrap
+ * @dependens jquery.js & bootsrap.js
+ * @author Robert Kuznetsov
+ */
+;(function () {
+    var M = {};
+    
+    M.modal = $('<div class="modal fade" tabindex="-1" role="dialog"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><h4 class="modal-title"></h4></div><div class="modal-body"><p></p></div><div class="modal-footer"></div></div><!-- /.modal-content --></div><!-- /.modal-dialog --></div><!-- /.modal -->');
+    M.alertDanger = $('<div class="modal fade" tabindex="-1" role="dialog"><div class="modal-dialog"><div class="modal-content alert-danger-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><h4 class="modal-title"></h4><p class="alert-modal-content"></p></div></div></div></div>');
+    M.alertSuccess = $('<div class="modal fade" tabindex="-1" role="dialog"><div class="modal-dialog"><div class="modal-content alert-success-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><h4 class="modal-title"></h4><p class="alert-modal-content"></p></div></div></div></div>');
+
+    M.btnsSaveCancel = [
+        '<button type="button" class="btn btn-cancel btn-default" data-dismiss="modal">Отменить</button>',
+        '<button type="button" class="btn btn-save btn-primary btn-save">Сохранить</button>'
+    ].join('');
+    
+    M.btnsOkCancel = [
+        '<button type="button" class="btn btn-cancel btn-default" data-dismiss="modal">Отмена</button>',
+        '<button type="button" class="btn btn-ok btn-primary btn-save">Ок</button>'
+    ].join('');
+    
+    M.btnClose = [
+        '<button type="button" class="btn btn-close btn-default" data-dismiss="modal">Закрыть</button>',
+    ].join('');
+    
+    M.construct = function (header, body, footer) {
+        M.modal.find('.modal-title').html(header);
+        M.modal.find('.modal-body').html(body);
+        M.modal.find('.modal-footer').html(footer);
+        M.modal.modal({
+            backdrop: false
+        });
+        return false;
+    };
+
+    M.constrAlert = function (type, header, content) {
+        if(typeof type !== 'undefined' && type == 'danger') {
+            M.alertDanger.find('.modal-title').html(header);
+            M.alertDanger.find('.alert-modal-content').html(content);
+            M.alertDanger.modal();
+            M.alertDanger.on('shown.bs.modal', function () {
+                $('.alert-danger-content').css('background-color', '#dca7a7');
+                $('.alert-modal-content').css('font-size', '12px');
+            })
+        }
+        if(typeof type !== 'undefined' && type == 'success') {
+            M.alertSuccess.find('.modal-title').html(header);
+            M.alertSuccess.find('.alert-modal-content').html(content);
+            M.alertSuccess.modal();
+            M.alertSuccess.on('shown.bs.modal', function () {
+                $('.alert-success-content').css('background-color', '#dff0d8');
+                $('.alert-modal-content').css('font-size', '12px');
+            })
+        }
+    };
+    
+    window.Modal = M;
+}());
